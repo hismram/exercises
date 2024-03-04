@@ -1,21 +1,30 @@
+import java.util.HashMap;
+
 public class Solution {
     public int numIdenticalPairs(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
         int pairs = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (i + 1 < nums.length) {
-                for (int j = i + 1; j < nums.length; j++) {
-                    if (nums[i] == nums[j]) {
-                        pairs++;
-                    }
-                }
+        for (int num : nums) {
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
+            } else {
+                map.put(num, 1);
             }
+        }
+
+        for (int i: map.keySet()) {
+            pairs += calcPairs(map.get(i));
         }
 
         return pairs;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Solution().numIdenticalPairs(new int[]{1,2,3}));
+    private int calcPairs(int count) {
+        return count * (count - 1) / 2;
+    }
+
+    public static void main(String[] args) {                         // 4 * (4 - 1) / 2
+        System.out.println(new Solution().numIdenticalPairs(new int[]{1,1,1,1, 2, 3 ,5}));
     }
 }
