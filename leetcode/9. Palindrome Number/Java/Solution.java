@@ -1,5 +1,5 @@
-import java.util.Scanner;
-
+// Given an integer x, return true if x is a palindrome, and false otherwise.
+//Constraints: -2**31 <= x <= 2**31 - 1
 class Solution {
     public static boolean isPalindrome(int x) {
         if (x < 0) {
